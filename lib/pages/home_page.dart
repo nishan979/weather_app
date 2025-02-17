@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // api key
-  final _weatherService = WeatherService("0a24bc171246be68c21cdc135f97dbdc");
+  final _weatherService = WeatherService("y0a24bc171246be68c21cdc135f97dbdc");
   Weather? _weather;
 
   // fetch weather
@@ -98,15 +98,15 @@ class _HomePageState extends State<HomePage> {
                   //   height: 10,
                   // ),
                   // ############### WEATHER ANIMATION HERE ###############
-                  // Expanded(
-                  //   flex: 3,
-                  //   child: Center(
-                  //     child: Lottie.asset(
-                  //         getWeatherAnimation(_weather?.mainCondition),
-                  //         height: 170,
-                  //         width: 170),
-                  //   ),
-                  // ),
+                  Expanded(
+                    flex: 2,
+                    child: Center(
+                      child: Lottie.asset(
+                          getWeatherAnimation(_weather?.mainCondition),
+                          height: 200,
+                          width: 200),
+                    ),
+                  ),
 
                   Expanded(
                     flex: 2,
@@ -124,6 +124,8 @@ class _HomePageState extends State<HomePage> {
                   // SizedBox(
                   //   height: 70,
                   // ),
+
+                  // ##### commenting for testing purposes
                   Expanded(
                     flex: 1,
                     child: Text(""),
@@ -222,6 +224,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+
+                  // #### end of commenting 
 
                   // current time and date
 
