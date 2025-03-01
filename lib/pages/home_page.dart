@@ -12,7 +12,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // api key
-  final _weatherService = WeatherService("y0a24bc171246be68c21cdc135f97dbdc");
+  final _weatherService = WeatherService("0a24bc171246be68c21cdc135f97dbdc");
+
   Weather? _weather;
 
   // fetch weather
@@ -225,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
-                  // #### end of commenting 
+                  // #### end of commenting
 
                   // current time and date
 
