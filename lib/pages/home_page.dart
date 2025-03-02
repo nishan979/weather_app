@@ -124,11 +124,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  // SizedBox(
-                  //   height: 70,
-                  // ),
+                  
 
-                  // ##### commenting for testing purposes
                   Expanded(
                     flex: 1,
                     child: Text(""),
@@ -172,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   _weather != null
-                                      ? "Min temp ${_weather!.maxTemperature}°"
+                                      ? "${_weather!.maxTemperature}° temp maX"
                                       : "Loading...",
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.white),
@@ -180,9 +177,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
+                          
 
                           //pressure
                           Expanded(
@@ -206,9 +201,7 @@ class _HomePageState extends State<HomePage> {
                                   TextStyle(fontSize: 14, color: Colors.white),
                             ),
                           ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
+                         
 
                           // wind speed and degree in a row
                           Expanded(
@@ -237,12 +230,12 @@ class _HomePageState extends State<HomePage> {
                               child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              // Text(
+                              //   "Made with ❤️ by ",
+                              //   style: TextStyle(color: Colors.white),
+                              // ),
                               Text(
-                                "Made with ❤️ by ",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Text(
-                                "Nishan",
+                                "NISHAN",
                                 style: TextStyle(color: Colors.blue),
                               )
                             ],
@@ -252,28 +245,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
-                  // #### end of commenting
-
-                  // current time and date
-
-                  // sunrise and sunset
-
-                  // city name
-
-                  // weather animation
-
-                  // SizedBox(
-                  //   height: 60,
-                  // ),
-
-                  // temperature
-
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-
-                  // weather condition
-                  // Text(_weather?.mainCondition ?? "")
                 ],
               ),
             ),
