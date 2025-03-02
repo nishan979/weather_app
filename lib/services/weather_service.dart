@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,11 +13,13 @@ class WeatherService {
 
   WeatherService(this.apiKey);
 
+
   Future<Weather> getWeather(String cityName) async {
-    final response =
-        //await http.get(Uri.parse('$BASE_URL?q=$cityName&apiKey&units=metric'));
-        await http
-            .get(Uri.parse('$baseUrl?q=$cityName&appid=$apiKey&units=metric'));
+    final response = await http
+        .get(Uri.parse('$baseUrl?q=$cityName&appid=$apiKey&units=metric'));
+
+    // Debugging line
+    // print("API Response: ${response.body}"); 
 
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));
@@ -26,28 +29,25 @@ class WeatherService {
   }
 
   Future<String> getCurrentCity() async {
-    // get permission from user
+    if (!Platform.isAndroid && !Platform.isIOS) {
+      return "Dhaka"; // Using a default city for Linux
+    }
+
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
 
-    // fetch the current location
     Position position = await Geolocator.getCurrentPosition(
-        locationSettings: LocationSettings(
-      accuracy: LocationAccuracy.high,
-      distanceFilter: 100, // in meters
-    ));
-    // desiredAccuracy: LocationAccuracy.high,
-    // timeLimit: Duration(seconds: 5));
+      locationSettings: LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 100,
+      ),
+    );
 
-    // convert the location into a list of placemark objects
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
 
-    // extract the current city from the first placemark
-    String? city = placemarks[0].locality;
-
-    return city ?? "";
+    return placemarks[0].locality ?? "Unknown Location";
   }
 }

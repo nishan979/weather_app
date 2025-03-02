@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
@@ -41,14 +43,14 @@ class _HomePageState extends State<HomePage> {
       return 'assets/sunny.json';
     }
     String condition = mainCondition.toLowerCase();
-    if (condition.contains('cloud')) return 'assets/clouds.json';
+    if (condition.contains('cloud')) return 'assets/cloud.json';
     if (condition.contains('mist') || condition.contains('fog')) {
-      return 'assets/clouds.json';
+      return 'assets/cloud.json';
     }
     if (condition.contains('smoke') ||
         condition.contains('haze') ||
         condition.contains('dust')) {
-      return 'assets/clouds.json';
+      return 'assets/cloud.json';
     }
     if (condition.contains('rain') || condition.contains('drizzle')) {
       return 'assets/rain.json';
@@ -114,7 +116,9 @@ class _HomePageState extends State<HomePage> {
                     child: Align(
                       alignment: AlignmentDirectional.bottomCenter,
                       child: Text(
-                        '${_weather?.temperature.round()}°C',
+                        _weather != null
+                            ? '${_weather!.temperature.round()}°C'
+                            : 'Loading...',
                         style: TextStyle(
                             fontSize: 80,
                             color: Colors.white,
@@ -143,10 +147,12 @@ class _HomePageState extends State<HomePage> {
                             flex: 1,
                             child: Center(
                               child: Text(
-                                  _weather?.feelsLike ??
-                                      "loading feels like...",
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.white)),
+                                _weather != null
+                                    ? "Feels like: ${_weather!.feelsLike.toStringAsFixed(1)}°C"
+                                    : "Loading...",
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -160,12 +166,16 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Min temp ${_weather?.minTemperature}°",
+                                  _weather != null
+                                      ? "Min temp ${_weather!.minTemperature}°"
+                                      : "Loading...",
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.white),
                                 ),
                                 Text(
-                                  "${_weather?.maxTemperature}° temp maX",
+                                  _weather != null
+                                      ? "Min temp ${_weather!.maxTemperature}°"
+                                      : "Loading...",
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.white),
                                 ),
@@ -221,6 +231,17 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
+                          // SizedBox
+                         SizedBox(
+                            height: 5,
+                          ),
+                          Expanded(child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Made with ❤️ by ", style: TextStyle(color: Colors.white),),
+                              Text("Nishan", style: TextStyle(color: Colors.blue),)
+                            ],
+                          ))
                         ],
                       ),
                     ),
