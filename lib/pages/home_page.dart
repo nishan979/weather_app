@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
@@ -232,14 +230,21 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           // SizedBox
-                         SizedBox(
+                          SizedBox(
                             height: 5,
                           ),
-                          Expanded(child: Row(
+                          Expanded(
+                              child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Made with ❤️ by ", style: TextStyle(color: Colors.white),),
-                              Text("Nishan", style: TextStyle(color: Colors.blue),)
+                              Text(
+                                "Made with ❤️ by ",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Text(
+                                "Nishan",
+                                style: TextStyle(color: Colors.blue),
+                              )
                             ],
                           ))
                         ],
