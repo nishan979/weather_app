@@ -38,6 +38,8 @@ dependencies:
   geolocator: ^13.0.2
   geocoding: ^3.0.0
   lottie: ^3.3.1
+  font_awesome_flutter: ^10.8.0
+  video_player: ^2.9.3
 
 dev_dependencies:
   flutter_test:
