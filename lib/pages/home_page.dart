@@ -71,196 +71,200 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        VideoBackground(),
-            Scaffold(
-            // backgroundColor: const Color.fromARGB(255, 56, 38, 50),
-            backgroundColor: Colors.transparent,
-            
-            body: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: SafeArea(
+    return Scaffold(
+      body: Stack(
+        children: [
+          const VideoBackground(),
+          Align(
+            alignment: Alignment.center,
+            child: bodyPart()),
+        ],
+      ),
+    );
+  }
+ 
+ //FOR TESTING ONLY
+  // Padding bodyPart() {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(5.0),
+  //     child: SafeArea(
+  //       child: Center(
+  //         child: Text("Dhakkitiki"),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+   Padding bodyPart() {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              // ############### WEATHER ANIMATION HERE ###############
+              Expanded(
+                flex: 2,
                 child: Center(
+                  child: Lottie.asset(
+                      getWeatherAnimation(_weather?.mainCondition),
+                      height: 300,
+                      width: 300),
+                ),
+              ),
+
+              Expanded(
+                flex: 2,
+                child: Align(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  child: Text(
+                    _weather != null
+                        ? '${_weather!.temperature.round()}°C'
+                        : 'Loading...',
+                    style: TextStyle(
+                        fontSize: 85,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+
+              Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.location_on, size: 13, color: Colors.white),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    Text(
+                      _weather?.cityName ?? "Loading City..",
+                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+
+              Expanded(
+                flex: 1,
+                child: Text(""),
+              ),
+
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // ############### WEATHER ANIMATION HERE ###############
+                      // feels like
                       Expanded(
-                        
-                        flex: 2,
+                        flex: 1,
                         child: Center(
-                          child: Lottie.asset(
-                              getWeatherAnimation(_weather?.mainCondition),
-                              height: 300,
-                              width: 300),
-                        ),
-                      ),
-                  
-                      Expanded(
-                        flex: 2,
-                        child: Align(
-                          alignment: AlignmentDirectional.bottomCenter,
                           child: Text(
                             _weather != null
-                                ? '${_weather!.temperature.round()}°C'
-                                : 'Loading...',
-                            style: TextStyle(
-                                fontSize: 85,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                                ? "Feels like: ${_weather!.feelsLike.toStringAsFixed(1)}°C"
+                                : "Loading...",
+                            style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         ),
                       ),
-                  
+                      SizedBox(
+                        height: 5,
+                      ),
+
+                      // min and max temp
                       Expanded(
                         flex: 1,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(Icons.location_on, size: 13, color: Colors.white),
-                            SizedBox(
-                              width: 3,
+                            Text(
+                              _weather != null
+                                  ? "Min temp ${_weather!.minTemperature}°"
+                                  : "Loading...",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
                             ),
                             Text(
-                              _weather?.cityName ?? "Loading City..",
-                              style: TextStyle(fontSize: 17, color: Colors.white),
+                              _weather != null
+                                  ? "${_weather!.maxTemperature}° temp maX"
+                                  : "Loading...",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
                             ),
                           ],
                         ),
                       ),
-                  
+
+                      //pressure
                       Expanded(
                         flex: 1,
-                        child: Text(""),
+                        child: Text(
+                          "${_weather?.pressure} hPa",
+                          style: TextStyle(fontSize: 14, color: Colors.white),
+                        ),
                       ),
-                  
+                      SizedBox(
+                        height: 5,
+                      ),
+
+                      // humidity
                       Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
+                        flex: 1,
+                        child: Text(
+                          "${_weather?.humidity} %",
+                          style: TextStyle(fontSize: 14, color: Colors.white),
+                        ),
+                      ),
+
+                      // wind speed and degree in a row
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Wind speed ${_weather?.windSpeed}",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                            Text(
+                              "${_weather?.winDegree} deg winD",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // SizedBox
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            )
+                          ],
+                        ),
+                        child: Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // feels like
-                              Expanded(
-                                flex: 1,
-                                child: Center(
-                                  child: Text(
-                                    _weather != null
-                                        ? "Feels like: ${_weather!.feelsLike.toStringAsFixed(1)}°C"
-                                        : "Loading...",
-                                    style: TextStyle(
-                                        fontSize: 14, color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                  
-                              // min and max temp
-                              Expanded(
-                                flex: 1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      _weather != null
-                                          ? "Min temp ${_weather!.minTemperature}°"
-                                          : "Loading...",
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
-                                    ),
-                                    Text(
-                                      _weather != null
-                                          ? "${_weather!.maxTemperature}° temp maX"
-                                          : "Loading...",
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                  
-                              //pressure
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  "${_weather?.pressure} hPa",
-                                  style:
-                                      TextStyle(fontSize: 14, color: Colors.white),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                  
-                              // humidity
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  "${_weather?.humidity} %",
-                                  style:
-                                      TextStyle(fontSize: 14, color: Colors.white),
-                                ),
-                              ),
-                  
-                              // wind speed and degree in a row
-                              Expanded(
-                                flex: 1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Wind speed ${_weather?.windSpeed}",
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
-                                    ),
-                                    Text(
-                                      "${_weather?.winDegree} deg winD",
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // SizedBox
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(20),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.3),
-                                        blurRadius: 10,
-                                        spreadRadius: 2,
-                                      )
-                                    ],
-                                    ),
-                                    
-                                child: Expanded(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      // Text(
-                                      //   "Made with ❤️ by ",
-                                      //   style: TextStyle(color: Colors.white),
-                                      // ),
-                                      Text(
-                                        "NISHAN",
-                                        style: TextStyle(color: Colors.blue),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              // Text(
+                              //   "Made with ❤️ by ",
+                              //   style: TextStyle(color: Colors.white),
+                              // ),
+                              Text(
+                                "NISHAN",
+                                style: TextStyle(color: Colors.blue),
+                              )
                             ],
                           ),
                         ),
@@ -269,8 +273,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-            )),
-          ],
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
