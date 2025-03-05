@@ -72,13 +72,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          const VideoBackground(),
-          Align(
-            alignment: Alignment.center,
-            child: bodyPart()),
-        ],
+      
+      backgroundColor: Colors.black.withOpacity(0.5),
+      // body: Stack(
+      //   children: [
+      //     const VideoBackground(),
+      //     Align(
+      //       alignment: Alignment.center,
+      //       child: bodyPart()),
+      //   ],
+      // ),
+
+      //IMAGE CHECKS
+
+
+      body: Container(
+        
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+          // add opacity
+          // color: Colors.black.withOpacity(0.8),
+        ),
+        
+        child: Align(
+          alignment: Alignment.center,
+          child: bodyPart(),
+        ),
       ),
     );
   }
@@ -95,13 +117,19 @@ class _HomePageState extends State<HomePage> {
   //   );
   // }
 
+  
+
    Padding bodyPart() {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: SafeArea(
+        
         child: Center(
+          
           child: Column(
+           
             children: [
+              
               // ############### WEATHER ANIMATION HERE ###############
               Expanded(
                 flex: 2,
@@ -280,3 +308,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+

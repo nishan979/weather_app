@@ -74,6 +74,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/images/
+    - assets/icon/
+    - assets/videos/
   # uses-material-design: true
   # assets:
   #   - assets/backgroundVideo.mp4
