@@ -77,6 +77,7 @@ flutter:
     - assets/images/
     - assets/icon/
     - assets/videos/
+    - assets/gif/
   # uses-material-design: true
   # assets:
   #   - assets/backgroundVideo.mp4

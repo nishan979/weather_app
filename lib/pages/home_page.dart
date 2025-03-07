@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
 import 'package:lottie/lottie.dart';
-import 'package:weather_app/widgets/video_background_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -90,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/background.jpg"),
+            image: AssetImage("assets/gif/storm.gif"),
             fit: BoxFit.cover,
           ),
           // add opacity
