@@ -89,11 +89,15 @@ class _HomePageState extends State<HomePage> {
         
         decoration: BoxDecoration(
           image: DecorationImage(
+            // add blur in image
+
             image: AssetImage("assets/gif/storm.gif"),
             fit: BoxFit.cover,
+            opacity: 0.5,
+            colorFilter: ColorFilter.mode(
+                const Color.fromARGB(255, 1, 7, 44).withOpacity(0.5), BlendMode.dstATop),
           ),
-          // add opacity
-          // color: Colors.black.withOpacity(0.8),
+
         ),
         
         child: Align(
