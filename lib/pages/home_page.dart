@@ -71,7 +71,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: Colors.black.withOpacity(0.5),
       // body: Stack(
       //   children: [
@@ -84,9 +83,7 @@ class _HomePageState extends State<HomePage> {
 
       //IMAGE CHECKS
 
-
       body: Container(
-        
         decoration: BoxDecoration(
           image: DecorationImage(
             // add blur in image
@@ -95,11 +92,10 @@ class _HomePageState extends State<HomePage> {
             fit: BoxFit.cover,
             opacity: 0.5,
             colorFilter: ColorFilter.mode(
-                const Color.fromARGB(255, 1, 7, 44).withOpacity(0.5), BlendMode.dstATop),
+                const Color.fromARGB(255, 1, 7, 44).withOpacity(0.5),
+                BlendMode.dstATop),
           ),
-
         ),
-        
         child: Align(
           alignment: Alignment.center,
           child: bodyPart(),
@@ -107,8 +103,8 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
- 
- //FOR TESTING ONLY
+
+  //FOR TESTING ONLY
   // Padding bodyPart() {
   //   return Padding(
   //     padding: const EdgeInsets.all(5.0),
@@ -120,19 +116,13 @@ class _HomePageState extends State<HomePage> {
   //   );
   // }
 
-  
-
-   Padding bodyPart() {
+  Padding bodyPart() {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: SafeArea(
-        
         child: Center(
-          
           child: Column(
-           
             children: [
-              
               // ############### WEATHER ANIMATION HERE ###############
               Expanded(
                 flex: 2,
@@ -189,14 +179,28 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     children: [
                       // feels like
-                      Expanded(
-                        flex: 1,
-                        child: Center(
-                          child: Text(
-                            _weather != null
-                                ? "Feels like: ${_weather!.feelsLike.toStringAsFixed(1)}°C"
-                                : "Loading...",
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            )
+                          ],
+                        ),
+                        child: Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: Text(
+                              _weather != null
+                                  ? "Feels like: ${_weather!.feelsLike.toStringAsFixed(1)}°C"
+                                  : "Loading...",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
@@ -205,35 +209,61 @@ class _HomePageState extends State<HomePage> {
                       ),
 
                       // min and max temp
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              _weather != null
-                                  ? "Min temp ${_weather!.minTemperature}°"
-                                  : "Loading...",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
-                            ),
-                            Text(
-                              _weather != null
-                                  ? "${_weather!.maxTemperature}° temp maX"
-                                  : "Loading...",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
-                            ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            )
                           ],
+                        ),
+                        child: Expanded(
+                          flex: 1,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                _weather != null
+                                    ? "Min temp ${_weather!.minTemperature}°"
+                                    : "Loading...",
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              ),
+                              Text(
+                                _weather != null
+                                    ? "${_weather!.maxTemperature}° temp maX"
+                                    : "Loading...",
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
 
                       //pressure
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          "${_weather?.pressure} hPa",
-                          style: TextStyle(fontSize: 14, color: Colors.white),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            )
+                          ],
+                        ),
+                        child: Expanded(
+                          flex: 1,
+                          child: Text(
+                            "${_weather?.pressure} hPa",
+                            style: TextStyle(fontSize: 14, color: Colors.white),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -241,31 +271,57 @@ class _HomePageState extends State<HomePage> {
                       ),
 
                       // humidity
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          "${_weather?.humidity} %",
-                          style: TextStyle(fontSize: 14, color: Colors.white),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            )
+                          ],
+                        ),
+                        child: Expanded(
+                          flex: 1,
+                          child: Text(
+                            "${_weather?.humidity} %",
+                            style: TextStyle(fontSize: 14, color: Colors.white),
+                          ),
                         ),
                       ),
 
                       // wind speed and degree in a row
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Wind speed ${_weather?.windSpeed}",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
-                            ),
-                            Text(
-                              "${_weather?.winDegree} deg winD",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
-                            ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            )
                           ],
+                        ),
+                        child: Expanded(
+                          flex: 1,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Wind speed ${_weather?.windSpeed}",
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              ),
+                              Text(
+                                "${_weather?.winDegree} deg winD",
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       // SizedBox
@@ -311,5 +367,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
