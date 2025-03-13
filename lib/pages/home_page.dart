@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.black.withOpacity(0.3),
                               blurRadius: 10,
                               spreadRadius: 2,
-                            )
+                            ),
                           ],
                         ),
                         child: Expanded(
