@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 // city name on the top left corner
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(top: 7.0, left: 10.0),
                   child: Row(
                     children: [
                       Icon(Icons.location_on, size: 13, color: Colors.white),
@@ -158,15 +158,16 @@ class _HomePageState extends State<HomePage> {
 
                 // today date and time under the  city name
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: Row(
                     children: [
                       Icon(Icons.calendar_today, size: 13, color: Colors.white),
                       SizedBox(
                         width: 3,
                       ),
+                      // add am pm after current time
                       Text(
-                        "Today,  ${DateTime.now().hour}:${DateTime.now().minute}",
+                        "${DateFormat('EEE').format(DateTime.now())}, ${DateFormat('d').format(DateTime.now())} ${DateFormat('MMM').format(DateTime.now())} ${DateTime.now().hour}:${DateTime.now().minute}",
                         style: TextStyle(fontSize: 17, color: Colors.white),
                       ),
                     ],
@@ -179,12 +180,12 @@ class _HomePageState extends State<HomePage> {
                     child: Lottie.asset(
                         getWeatherAnimation(_weather?.mainCondition),
                         height: 300,
-                        width: 300),
+                        width: double.infinity),
                   ),
                 ),
                 // temperature on the left bottom corner
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: Align(
                     alignment: AlignmentDirectional.bottomStart,
                     child: Text(
@@ -198,9 +199,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                // weather conditions under the temperature on the left bottom corner and add something to the right bottom corner
+                // weather conditions under the temperature on the left bottom corner
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 10.0, bottom: 3.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -213,13 +214,13 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        "NISHAN",
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      // Text(
+                      //   "NISHAN",
+                      //   style: TextStyle(
+                      //       fontSize: 20,
+                      //       color: Colors.white,
+                      //       fontWeight: FontWeight.bold),
+                      // ),
                     ],
                   ),
                 ),
@@ -236,55 +237,82 @@ class _HomePageState extends State<HomePage> {
               children: [
                 // top left text weather now
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(top: 17.0, left: 15.0, bottom: 17),
                   child: Row(
                     children: [
-                      Icon(Icons.wb_sunny, size: 13, color: Colors.black),
-                      SizedBox(
-                        width: 3,
-                      ),
                       Text(
                         "Weather Now",
-                        style: TextStyle(fontSize: 17, color: Colors.black),
+                        style: TextStyle(
+                          fontSize: 24, 
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500
+                          ),
                       ),
                     ],
                   ),
                 ),
-                // on the first line there will be 'C icon and feels like weather on the top left corner and on the right there will be wind with same style.. and on the second line there will be min and max temp on the left and pressure on the right
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // icon and feels like
-                        Row(
-                          children: [
-                            Icon(Icons.wb_sunny, size: 20, color: Colors.black),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            Text(
-                              "Feels Like: ${_weather?.feelsLike.round()}°C",
-                              style: TextStyle(fontSize: 17, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                        // wind
-                        Row(
-                          children: [
-                            Icon(Icons.directions, size: 20, color: Colors.black),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            Text(
-                              "Wind: ${_weather?.windSpeed.round()} km/h",
-                              style: TextStyle(fontSize: 17, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                        
-                      ],
-                    ),
+                
+                Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text("°C", style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+                            ),),
+                          ),
+                          Column(
+                            children: [
+                              Text("Feel like"),
+                              Text(
+                                _weather != null
+                                    ? '${_weather!.feelsLike.toStringAsFixed(1)}°'
+                                    : 'Loading...',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 110,),
+                          //wind icon
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Icon(Icons.air, size: 20, color: Colors.black),
+                          ),
+                          Column(
+                            children: [
+                              Text("Wind"),
+                              Text(
+                                _weather != null
+                                    ? '${_weather!.windSpeed.toStringAsFixed(1)} km/h'
+                                    : 'Loading...',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text("Second Row"),
+                        ],
+                      ),
+                    ],
                   ),
+                ),
               ],
             ),
           ),
