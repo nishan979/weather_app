@@ -33,6 +33,8 @@ class _HomePageState extends State<HomePage> {
 
     catch (error) {
       print("Error fetching weather: $error");
+      
+
     }
   }
 
@@ -205,7 +207,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   // weather conditions under the temperature on the left bottom corner
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, bottom: 15.0),
+                    padding: const EdgeInsets.only(left: 20.0, bottom: 15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -263,7 +265,7 @@ class _HomePageState extends State<HomePage> {
                     flex: 1,
                     child: Padding(
                       padding:
-                          const EdgeInsets.only(top: 17.0, left: 15.0, bottom: 17),
+                          const EdgeInsets.only(top: 17.0, left: 20.0, bottom: 17),
                       child: Row(
                         children: [
                           Text(
